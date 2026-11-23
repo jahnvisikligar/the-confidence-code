@@ -1,0 +1,816 @@
+
+/* =========================================
+   THE CONFIDENCE CODE
+   Visual identity: Warm / Futuristic / Minimal
+   ========================================= */
+
+/* ---------- Design tokens ---------- */
+
+:root {
+  --ivory: #eeeae2;
+  --ivory-light: #f5f2ec;
+
+  --charcoal: #302a30;
+  --charcoal-soft: #514951;
+
+  --terracotta: #b89583;
+  --terracotta-light: #d5b5a4;
+
+  --lavender: #b8b0c9;
+  --lavender-dark: #8f849f;
+
+  --muted: #81777a;
+  --border: rgba(48, 42, 48, 0.16);
+
+  --font-main: "Avenir Next", Avenir, Inter,
+               "Segoe UI", sans-serif;
+
+  --font-mono: "SFMono-Regular", Consolas,
+               "Liberation Mono", monospace;
+}
+
+
+/* ---------- Reset ---------- */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background: var(--ivory);
+}
+
+body {
+  min-height: 100vh;
+  color: var(--charcoal);
+  font-family: var(--font-main);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+
+/* ---------- Main canvas ---------- */
+
+.page {
+  position: relative;
+  isolation: isolate;
+
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  min-height: 100svh;
+
+  padding: 34px 6.2vw 25px;
+
+  overflow: hidden;
+  background: var(--ivory);
+}
+
+
+/* ---------- Background artwork ---------- */
+
+.visual-background {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Subtle architectural grid */
+
+.visual-grid {
+  position: absolute;
+  inset: 0;
+
+  opacity: 0.18;
+
+  background-image:
+    linear-gradient(
+      to right,
+      var(--border) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      var(--border) 1px,
+      transparent 1px
+    );
+
+  background-size: 90px 90px;
+
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 45%,
+    transparent 100%
+  );
+}
+
+
+/* ---------- Ambient lighting ---------- */
+
+.ambient-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.36;
+}
+
+.glow-one {
+  width: 440px;
+  height: 440px;
+
+  right: 8%;
+  top: 12%;
+
+  background: var(--lavender);
+}
+
+.glow-two {
+  width: 350px;
+  height: 350px;
+
+  right: 27%;
+  bottom: 5%;
+
+  background: var(--terracotta-light);
+  opacity: 0.28;
+}
+
+
+/* ---------- Organic 3D sculpture ---------- */
+
+.sculpture {
+  position: absolute;
+
+  width: min(70vw, 960px);
+  height: min(100vh, 900px);
+
+  right: -4%;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  opacity: 0.9;
+  filter: saturate(0.82);
+}
+
+/* Main sculptural forms */
+
+.sculpture-form {
+  position: absolute;
+
+  border-radius: 50%;
+
+  transform-style: preserve-3d;
+}
+
+.form-back {
+  width: 67%;
+  height: 77%;
+
+  right: 7%;
+  top: 10%;
+
+  transform: rotate(28deg);
+
+  background:
+    radial-gradient(
+      ellipse at 28% 20%,
+      rgba(255,255,255,0.96) 0%,
+      transparent 23%
+    ),
+    radial-gradient(
+      ellipse at 75% 75%,
+      var(--lavender-dark) 0%,
+      var(--lavender) 34%,
+      var(--terracotta-light) 66%,
+      #a88d8b 100%
+    );
+
+  box-shadow:
+    inset -42px -48px 80px rgba(48,42,48,0.22),
+    inset 25px 25px 65px rgba(255,255,255,0.6),
+    0 50px 100px rgba(48,42,48,0.12);
+}
+
+.form-main {
+  width: 58%;
+  height: 36%;
+
+  right: 23%;
+  top: 45%;
+
+  transform: rotate(-33deg);
+
+  background:
+    linear-gradient(
+      130deg,
+      #e6d1c1 0%,
+      #c5b5c8 42%,
+      #94859e 75%,
+      #d2ac9c 100%
+    );
+
+  box-shadow:
+    inset 18px 18px 42px rgba(255,255,255,0.65),
+    inset -25px -28px 45px rgba(48,42,48,0.24),
+    0 30px 65px rgba(48,42,48,0.13);
+}
+
+.form-fold {
+  width: 25%;
+  height: 57%;
+
+  right: 46%;
+  top: 22%;
+
+  transform: rotate(30deg);
+
+  background:
+    linear-gradient(
+      110deg,
+      #fffaf3 0%,
+      #d9c2b4 33%,
+      #aa9bb5 76%,
+      #817487 100%
+    );
+
+  box-shadow:
+    inset 13px 12px 32px rgba(255,255,255,0.7),
+    inset -18px -20px 35px rgba(48,42,48,0.2);
+
+  opacity: 0.88;
+}
+
+
+/* Sculpture highlight */
+
+.sculpture-highlight {
+  position: absolute;
+
+  width: 45%;
+  height: 17%;
+
+  right: 18%;
+  top: 20%;
+
+  transform: rotate(35deg);
+
+  border-radius: 50%;
+
+  background: rgba(255,255,255,0.26);
+  filter: blur(35px);
+}
+
+
+/* Sculptural ring */
+
+.sculpture-ring {
+  position: absolute;
+
+  width: 86%;
+  height: 42%;
+
+  right: -3%;
+  top: 35%;
+
+  border: 1px solid rgba(72,61,74,0.24);
+  border-radius: 50%;
+
+  transform: rotate(-27deg);
+}
+
+
+/* ---------- Header ---------- */
+
+.header {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-symbol {
+  display: grid;
+  place-items: center;
+
+  width: 40px;
+  height: 40px;
+
+  border: 1px solid var(--charcoal);
+  border-radius: 50%;
+
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: -0.08em;
+}
+
+.brand-name {
+  font-size: 10px;
+  font-weight: 750;
+  line-height: 1.35;
+  letter-spacing: 0.17em;
+}
+
+.header-note {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  color: var(--muted);
+
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+  background: var(--terracotta);
+}
+
+
+/* ---------- Hero section ---------- */
+
+.hero {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+
+  padding: 7vh 0 9vh;
+}
+
+.hero-meta {
+  display: flex;
+  align-items: center;
+  gap: 35px;
+
+  margin-bottom: 27px;
+}
+
+.eyebrow,
+.meta-index {
+  color: var(--muted);
+
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.15em;
+}
+
+.eyebrow::before {
+  content: "";
+
+  display: inline-block;
+
+  width: 24px;
+  height: 1px;
+
+  margin-right: 10px;
+  vertical-align: middle;
+
+  background: var(--terracotta);
+}
+
+
+/* ---------- Headline ---------- */
+
+.hero-content {
+  max-width: 850px;
+}
+
+h1 {
+  font-size: clamp(64px, 9.2vw, 132px);
+  font-weight: 750;
+
+  line-height: 0.86;
+  letter-spacing: -0.085em;
+}
+
+.headline-line {
+  display: block;
+}
+
+.headline-accent {
+  color: var(--terracotta);
+}
+
+.period {
+  color: var(--charcoal);
+}
+
+
+/* ---------- Supporting copy ---------- */
+
+.hero-description {
+  display: flex;
+  align-items: flex-start;
+  gap: 17px;
+
+  max-width: 440px;
+
+  margin: 38px 0 0 6px;
+}
+
+.description-marker {
+  flex-shrink: 0;
+
+  width: 2px;
+  height: 55px;
+
+  background: var(--terracotta);
+}
+
+.hero-description p {
+  color: var(--charcoal-soft);
+
+  font-size: clamp(14px, 1.25vw, 17px);
+  line-height: 1.7;
+  letter-spacing: -0.015em;
+}
+
+
+/* ---------- Coming soon ---------- */
+
+.hero-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  max-width: 540px;
+
+  margin: 36px 0 0 6px;
+}
+
+.coming-soon {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 13px 17px;
+
+  border: 1px solid var(--border);
+  border-radius: 3px;
+
+  color: var(--charcoal);
+
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.17em;
+}
+
+.coming-icon {
+  position: relative;
+
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+  background: var(--terracotta);
+}
+
+.coming-icon::after {
+  content: "";
+
+  position: absolute;
+  inset: -4px;
+
+  border: 1px solid rgba(184,149,131,0.4);
+  border-radius: 50%;
+}
+
+.brand-philosophy {
+  color: var(--muted);
+
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.13em;
+}
+
+
+/* ---------- Visual annotations ---------- */
+
+.visual-label {
+  position: absolute;
+  z-index: 1;
+
+  color: rgba(48,42,48,0.5);
+
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.14em;
+
+  pointer-events: none;
+}
+
+.label-top {
+  right: 7%;
+  top: 24%;
+}
+
+.label-bottom {
+  right: 10%;
+  bottom: 17%;
+}
+
+
+/* ---------- Footer ---------- */
+
+.footer {
+  position: relative;
+  z-index: 2;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+
+  gap: 15px;
+
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+
+  color: var(--muted);
+
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.1em;
+}
+
+.footer-center {
+  text-align: center;
+}
+
+.footer-right {
+  text-align: right;
+}
+
+
+/* ---------- Animation ---------- */
+
+@media (prefers-reduced-motion: no-preference) {
+
+  .sculpture {
+    animation: sculpture-drift 18s ease-in-out infinite alternate;
+  }
+
+  .form-main {
+    animation: form-float 14s ease-in-out infinite alternate;
+  }
+
+  .ambient-glow {
+    animation: glow-breathe 12s ease-in-out infinite alternate;
+  }
+
+  @keyframes sculpture-drift {
+    from {
+      transform: translateY(-51%) rotate(-1deg);
+    }
+
+    to {
+      transform: translateY(-49%) rotate(2deg);
+    }
+  }
+
+  @keyframes form-float {
+    from {
+      transform: rotate(-33deg) translateY(-4px);
+    }
+
+    to {
+      transform: rotate(-30deg) translateY(8px);
+    }
+  }
+
+  @keyframes glow-breathe {
+    from {
+      opacity: 0.25;
+    }
+
+    to {
+      opacity: 0.42;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+
+/* ---------- Tablet ---------- */
+
+@media (max-width: 900px) {
+
+  .page {
+    padding-left: 5vw;
+    padding-right: 5vw;
+  }
+
+  .sculpture {
+    width: 82vw;
+    right: -18%;
+    opacity: 0.72;
+  }
+
+  .hero-content {
+    max-width: 720px;
+  }
+
+  h1 {
+    font-size: clamp(66px, 10vw, 100px);
+  }
+
+  .label-top,
+  .label-bottom {
+    display: none;
+  }
+}
+
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 600px) {
+
+  .page {
+    min-height: 100svh;
+    padding: 23px 22px 20px;
+  }
+
+  .header {
+    align-items: flex-start;
+  }
+
+  .brand-symbol {
+    width: 35px;
+    height: 35px;
+  }
+
+  .brand-name {
+    font-size: 9px;
+  }
+
+  .header-note {
+    max-width: 125px;
+    font-size: 7px;
+    line-height: 1.6;
+    text-align: right;
+  }
+
+  .hero {
+    justify-content: center;
+    padding: 12vh 0 14vh;
+  }
+
+  .hero-meta {
+    margin-bottom: 23px;
+  }
+
+  .eyebrow,
+  .meta-index {
+    font-size: 8px;
+  }
+
+  h1 {
+    font-size: clamp(56px, 14.2vw, 82px);
+    line-height: 0.9;
+  }
+
+  .hero-description {
+    max-width: 340px;
+    margin-top: 29px;
+    gap: 13px;
+  }
+
+  .hero-description p {
+    font-size: 14px;
+  }
+
+  .description-marker {
+    height: 65px;
+  }
+
+  .hero-bottom {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 20px;
+
+    margin-top: 29px;
+  }
+
+  .coming-soon {
+    padding: 12px 14px;
+  }
+
+  .brand-philosophy {
+    font-size: 7px;
+  }
+
+  .sculpture {
+    width: 125vw;
+    height: 76vh;
+
+    right: -62%;
+    top: 51%;
+
+    opacity: 0.43;
+  }
+
+  .sculpture-ring {
+    width: 100%;
+    right: -15%;
+  }
+
+  .ambient-glow {
+    filter: blur(65px);
+  }
+
+  .glow-one {
+    width: 260px;
+    height: 260px;
+
+    right: -15%;
+    top: 25%;
+  }
+
+  .glow-two {
+    width: 220px;
+    height: 220px;
+
+    right: 25%;
+    bottom: 10%;
+  }
+
+  .visual-grid {
+    background-size: 60px 60px;
+    opacity: 0.1;
+  }
+
+  .footer {
+    grid-template-columns: 1fr 1fr;
+    font-size: 7px;
+    line-height: 1.6;
+  }
+
+  .footer-center {
+    display: none;
+  }
+
+  .footer-right {
+    text-align: right;
+  }
+}
+
+
+/* ---------- Very small screens ---------- */
+
+@media (max-width: 360px) {
+
+  .page {
+    padding-left: 17px;
+    padding-right: 17px;
+  }
+
+  h1 {
+    font-size: 54px;
+  }
+
+  .hero-description p {
+    font-size: 13px;
+  }
+
+  .header-note {
+    max-width: 105px;
+  }
+}
