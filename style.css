@@ -718,6 +718,7 @@ body {
 }
 
 /* A soft, unified ambient glow behind the sculpture. */
+/*
 .sculpture-composition::before {
   content: "";
   position: absolute;
