@@ -709,6 +709,7 @@ body {
 
 /* Keep the sculpture and all orbital elements
    within one shared composition. */
+/*
 .sculpture-composition {
   position: relative;
   display: grid;
@@ -747,9 +748,11 @@ body {
 
   filter: blur(38px);
   animation: ambient-breathe 9s ease-in-out infinite alternate;
-}
+}*/
 
 /* Place the sculpture at the exact centre. */
+
+/*
 .sculpture {
   position: absolute;
   top: 50%;
@@ -761,9 +764,10 @@ body {
   filter:
     drop-shadow(0 18px 35px rgba(48, 42, 48, 0.10))
     drop-shadow(0 0 28px rgba(184, 176, 201, 0.12));
-}
+}*/
 
 /* All orbital rings share the same centre as the object. */
+/*
 .orbit-one,
 .orbit-two,
 .orbit-three {
@@ -773,9 +777,9 @@ body {
   translate: -50% -50%;
   transform-origin: center;
   pointer-events: none;
-}
-
+}*/
 /* Keep the orbital movement subtle and atmospheric. */
+/*
 .orbit-one {
   opacity: 0.52;
 }
@@ -787,17 +791,19 @@ body {
 .orbit-three {
   opacity: 0.24;
 }
-
+*/
 /* Soften the boundaries between the sculpture layers. */
+/*
 .sculpture-body,
 .sculpture-layer {
   border: none;
   background-blend-mode: soft-light, normal;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-}
+}*/
 
 /* Blend the individual forms into one organic surface. */
+/*
 .layer-back {
   opacity: 0.76;
   filter: blur(2px);
@@ -817,16 +823,18 @@ body {
   opacity: 0.72;
   filter: blur(1.5px);
 }
-
+*/
 /* A softer, more natural highlight. */
+/*
 .sculpture-shine,
 .sculpture-highlight {
   mix-blend-mode: soft-light;
   opacity: 0.58;
   filter: blur(7px);
-}
+}*/
 
 /* Atmospheric breathing, rather than a hard pulsing effect. */
+/*
 @keyframes ambient-breathe {
   from {
     opacity: 0.72;
@@ -837,12 +845,240 @@ body {
     opacity: 1;
     scale: 1.04;
   }
-}
+}*/
 
 /* Preserve accessibility preferences. */
+/*
 @media (prefers-reduced-motion: reduce) {
   .sculpture-composition::before {
     animation: none;
   }
+} */
+
+
+/* =========================================
+   SCULPTURE REFINEMENT
+   True centering + blended organic surfaces
+========================================= */
+
+/* Keep the sculpture composition centred
+   inside the visual stage. */
+.sculpture-composition {
+  position: relative;
+  display: grid;
+  place-items: center;
+  isolation: isolate;
 }
 
+/* Centre the sculpture itself.
+   Keep it in normal grid positioning. */
+.sculpture {
+  position: relative;
+  top: auto;
+  left: auto;
+  translate: none;
+
+  width: 65%;
+  height: 75%;
+
+  display: grid;
+  place-items: center;
+
+  transform-origin: center;
+  transform-style: preserve-3d;
+}
+
+/* All orbit rings now share the exact
+   centre of the sculpture. */
+.orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  transform-origin: center;
+}
+
+.orbit-one {
+  width: 118%;
+  height: 48%;
+}
+
+.orbit-two {
+  width: 105%;
+  height: 75%;
+}
+
+.orbit-three {
+  width: 135%;
+  height: 35%;
+}
+
+/* Centre the actual sculpture body
+   within the orbital system. */
+.sculpture-body {
+  position: relative;
+  width: 75%;
+  height: 90%;
+
+  margin: auto;
+  isolation: isolate;
+
+  filter:
+    drop-shadow(12px 20px 22px rgba(48, 42, 48, 0.12));
+}
+
+/* Give all layers a common organic surface. */
+.sculpture-layer {
+  border: none;
+  background-blend-mode: multiply;
+  mix-blend-mode: multiply;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Rear layer: lavender melting into terracotta. */
+.layer-back {
+  background:
+    radial-gradient(
+      ellipse at 35% 25%,
+      #D7CDDD 0%,
+      #B8AEC7 32%,
+      #B49A9D 68%,
+      #A98282 100%
+    );
+
+  transform: translate(9px, 4px) rotate(12deg) scale(0.94);
+  opacity: 0.78;
+  filter: blur(5px);
+
+  animation: layer-back-blend 9s ease-in-out infinite alternate;
+}
+
+/* Middle layer: merge the warm and cool tones. */
+.layer-middle {
+  background:
+    radial-gradient(
+      ellipse at 28% 25%,
+      #E8D8D0 0%,
+      #D4B8B2 35%,
+      #C1A6B5 66%,
+      #9D899D 100%
+    );
+
+  opacity: 0.88;
+  filter: blur(4px);
+  transform: rotate(-8deg);
+}
+
+/* Front layer: soft ivory, muted rose
+   and lavender transitions. */
+.layer-front {
+  background:
+    radial-gradient(
+      ellipse at 28% 22%,
+      #F0E4D9 0%,
+      #E0C9C0 30%,
+      #C7A7A9 62%,
+      #A996B1 100%
+    );
+
+  opacity: 0.88;
+  filter: blur(3px);
+
+  transform: rotate(12deg);
+  animation: layer-front-blend 8s ease-in-out infinite alternate;
+}
+
+/* Fold becomes a translucent continuation
+   of the same surface, not a separate strip. */
+.layer-fold {
+  background:
+    linear-gradient(
+      125deg,
+      rgba(245, 231, 218, 0.78) 0%,
+      rgba(211, 190, 198, 0.55) 42%,
+      rgba(184, 176, 201, 0.22) 100%
+    );
+
+  opacity: 0.7;
+  filter: blur(6px);
+  mix-blend-mode: soft-light;
+}
+
+/* Softer highlights that follow the surface. */
+.sculpture-shine {
+  opacity: 0.48;
+  filter: blur(18px);
+  mix-blend-mode: soft-light;
+}
+
+.sculpture-highlight {
+  background:
+    radial-gradient(
+      ellipse,
+      rgba(218, 202, 218, 0.5),
+      rgba(184, 149, 131, 0.12) 65%,
+      transparent 100%
+    );
+
+  opacity: 0.7;
+  filter: blur(30px);
+  mix-blend-mode: screen;
+}
+
+/* Blend the ambient colours behind the object. */
+.visual-glow {
+  width: 95%;
+  background:
+    radial-gradient(
+      ellipse at 38% 35%,
+      rgba(184, 176, 201, 0.48),
+      transparent 52%
+    ),
+    radial-gradient(
+      ellipse at 65% 65%,
+      rgba(184, 149, 131, 0.38),
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse at 50% 50%,
+      rgba(238, 234, 226, 0.5),
+      transparent 75%
+    );
+
+  filter: blur(48px);
+}
+
+/* Keep the orbital movement centred. */
+@keyframes layer-back-blend {
+  from {
+    transform: translate(7px, 3px) rotate(10deg) scale(0.92);
+  }
+
+  to {
+    transform: translate(12px, 6px) rotate(17deg) scale(0.96);
+  }
+}
+
+@keyframes layer-front-blend {
+  from {
+    transform: rotate(9deg) translateY(-2px);
+  }
+
+  to {
+    transform: rotate(15deg) translateY(3px);
+  }
+}
+
+/* Mobile positioning remains centred too. */
+@media (max-width: 650px) {
+  .sculpture {
+    width: 60%;
+    height: 70%;
+  }
+
+  .sculpture-body {
+    width: 75%;
+    height: 90%;
+  }
+}
